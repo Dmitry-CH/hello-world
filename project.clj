@@ -6,7 +6,13 @@
   :min-lein-version "2.0.0"
   
   ;;; Dependencies, Plugins, and Repositories
-  :dependencies [[org.clojure/clojure "1.11.1"]]
+  :dependencies [[org.clojure/clojure "1.11.1"]
+                 [com.taoensso/timbre "6.0.4"]
+                 [integrant "0.8.0"]
+                 [metosin/reitit "0.6.0"]
+                 [metosin/ring-http-response "0.9.3"]
+                 [ring/ring-core "1.9.6"]
+                 [ring/ring-jetty-adapter "1.9.6"]]
   :plugins [[lein-pprint "1.3.2"]]
 
   ;;; Profiles
