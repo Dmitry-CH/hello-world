@@ -1,0 +1,16 @@
+{:server/ring-jetty
+ {:port 3000
+  :handler #ig/ref :handler/ring}
+ 
+ :handler/ring
+ {:router #ig/ref :router/core}
+ 
+ :router/core
+ {:base-path ""
+  :routes #ig/refset :router/routes}
+ 
+ [:router.routes/home :router/routes]
+ {:path "/"}
+ 
+ [:router.routes/health :router/routes]
+ {:path "/health"}}
