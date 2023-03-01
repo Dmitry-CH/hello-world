@@ -7,6 +7,8 @@
   
   ;;; Dependencies, Plugins, and Repositories
   :dependencies [[org.clojure/clojure "1.11.1"]
+                 [org.clojure/tools.logging "1.2.4"]
+                 [ch.qos.logback/logback-classic "1.4.5"]
                  [com.taoensso/timbre "6.0.4"]
                  [integrant "0.8.0"]
                  [metosin/reitit "0.6.0"]
@@ -16,11 +18,14 @@
   :plugins [[lein-pprint "1.3.2"]]
 
   ;;; Profiles
-  :profiles {:dev {:dependencies [[org.clojure/tools.namespace "1.4.1"]]}
+  :profiles {:dev {:dependencies [[org.clojure/tools.namespace "1.4.1"]
+                                  [integrant/repl "0.3.2"]]
+                   :jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory"]}
              
              :uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"
-                                  "-Dclojure.compiler.elide-meta=[:added :doc :file :line]"]
+                                  "-Dclojure.compiler.elide-meta=[:added :doc :file :line]"
+                                  "-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory"]
                        :omit-source true
                        :uberjar-name "helloworld-standalone.jar"}}
   
