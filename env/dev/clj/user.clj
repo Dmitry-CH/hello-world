@@ -1,7 +1,6 @@
 (ns user
   "Userspace functions you can run by default in your local REPL."
-  (:require [clojure.pprint :as pp]
-            [clojure.tools.namespace.repl :as repl]
+  (:require [clojure.tools.namespace.repl :as repl]
             [integrant.core :as ig]
             [integrant.repl :refer [go halt reset reset-all]]
             [helloworld.config :refer [system-config]]))
@@ -13,9 +12,9 @@
 
 (dev-prep!)
 
-;; ...
+
 (repl/set-refresh-dirs "src/clj")
-;; ...
+
 (def refresh repl/refresh)
 
 (comment

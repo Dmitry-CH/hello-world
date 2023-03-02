@@ -9,8 +9,8 @@
  {:base-path ""
   :routes #ig/refset :router/routes}
  
- [:router.routes/home :router/routes]
+ [:api.components/home :router/routes]
  {:path "/"}
  
- [:router.routes/health :router/routes]
+ [:api.components/health :router/routes]
  {:path "/health"}}

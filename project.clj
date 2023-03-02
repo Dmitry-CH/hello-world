@@ -11,11 +11,12 @@
                  [ch.qos.logback/logback-classic "1.4.5"]
                  [com.taoensso/timbre "6.0.4"]
                  [integrant "0.8.0"]
+                 [io.github.clj-kondo/config-rum-rum "1.0.0"]
                  [metosin/reitit "0.6.0"]
                  [metosin/ring-http-response "0.9.3"]
                  [ring/ring-core "1.9.6"]
                  [ring/ring-jetty-adapter "1.9.6"]
-                 [rum "0.12.10"]]
+                 [rum "0.12.10" :exclusions [cljsjs/react cljsjs/react-dom]]]
   :plugins [[lein-pprint "1.3.2"]]
 
   ;;; Profiles

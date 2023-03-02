@@ -7,8 +7,8 @@
             [helloworld.server]
             ;; Routes
             [helloworld.router]
-            [helloworld.api.components.home.route]
-            [helloworld.api.components.health.route])
+            [helloworld.api.components.home.routes]
+            [helloworld.api.components.health.routes])
   (:gen-class))
 
 ;; Log uncaught exceptions in threads
