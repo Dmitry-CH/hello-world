@@ -14,15 +14,22 @@
                  [metosin/reitit "0.6.0"]
                  [metosin/ring-http-response "0.9.3"]
                  [ring/ring-core "1.9.6"]
-                 [ring/ring-jetty-adapter "1.9.6"]]
+                 [ring/ring-jetty-adapter "1.9.6"]
+                 [rum "0.12.10"]]
   :plugins [[lein-pprint "1.3.2"]]
 
   ;;; Profiles
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "1.4.1"]
                                   [integrant/repl "0.3.2"]]
+                   :source-paths ["env/dev/clj"]
+                   :resource-paths ["env/dev/resources"]
+
                    :jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory"]}
              
-             :uberjar {:aot :all
+             :uberjar {:source-paths ["env/prod/clj"]
+                       :resource-paths ["env/prod/resources"]
+                       
+                       :aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"
                                   "-Dclojure.compiler.elide-meta=[:added :doc :file :line]"
                                   "-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory"]
