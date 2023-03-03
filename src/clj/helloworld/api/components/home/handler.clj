@@ -7,9 +7,9 @@
   (log/debug "[Handler] Home page")
 
   (try
-    (let [page (render-home)] 
+    (let [page (render-home)]
       (-> page
           http-response/ok
           (assoc-in [:headers "Content-Type"] "text/html;charset=utf-8")))
     (catch Exception e
-      e)))
+      (throw e))))
