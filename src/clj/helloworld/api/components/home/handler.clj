@@ -1,7 +1,7 @@
 (ns helloworld.api.components.home.handler
   (:require [clojure.tools.logging :as log]
             [ring.util.http-response :as http-response]
-            [helloworld.pages.home.core :refer [render-home]]))
+            [helloworld.pages.components.home.core :refer [render-home]]))
 
 (defn home [_]
   (log/debug "[Handler] Home page")

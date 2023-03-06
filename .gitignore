@@ -16,3 +16,8 @@ pom.xml.asc
 .calva/
 .clj-kondo/
 .lsp/
+.shadow-cljs/
+compiled/
+node_modules/
+resources/public/assets/js/
+resources/public/default.html

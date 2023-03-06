@@ -1,4 +1,4 @@
-(ns helloworld.pages.home.core
+(ns helloworld.pages.components.home.core
   (:require [clojure.string :as str]
             [rum.core :as rum]
             [helloworld.pages.layout :refer [layout]]))

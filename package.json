@@ -1,0 +1,20 @@
+{
+  "name": "hello-world",
+  "version": "0.1.0",
+  "description": "Starter pet-project",
+  "scripts": {
+    "build": "npm run cljs:build && cross-env NODE_ENV=production webpack",
+    "watch": "cross-env NODE_ENV=development webpack --progress --watch",
+    "cljs:build": "shadow-cljs release app",
+    "cljs:watch": "shadow-cljs watch app"
+  },
+  "author": "Dmitry Chekanov",
+  "license": "",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "html-webpack-plugin": "^5.5.0",
+    "shadow-cljs": "^2.21.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
