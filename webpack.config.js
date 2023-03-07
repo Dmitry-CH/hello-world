@@ -1,15 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const NODE_ENV = (process.env.NODE_ENV || 'development').trim();
+
 module.exports = {
-    mode: 'development',
+    mode: NODE_ENV,
     entry: {
-        main: './src/js/main.js',
+        main: './src/js/index.js',
     },
     output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, './resources/public/assets/js'),
-        publicPath: 'assets/js',
+        filename: 'js/[name].js',
+        path: path.resolve(__dirname, './resources/public/assets'),
+        publicPath: 'assets',
     },
     devtool: false,
     plugins: [
