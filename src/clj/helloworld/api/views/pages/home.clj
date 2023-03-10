@@ -1,6 +1,6 @@
-(ns helloworld.api.components.home.templates.page
+(ns helloworld.api.views.pages.home
   (:require [rum.core :as rum]
-            [helloworld.view :refer [extend-layout]]))
+            [helloworld.api.views.layout :refer [extend-layout]]))
 
 (rum/defc title [s]
   [:h1 s])

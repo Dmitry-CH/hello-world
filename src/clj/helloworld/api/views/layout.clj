@@ -1,6 +1,6 @@
-(ns helloworld.view
-  (:require [clojure.string :as str]
-            [clojure.java.io :as io]))
+(ns helloworld.api.views.layout
+  (:require [clojure.java.io :as io]
+            [clojure.string :as str]))
 
 (def ^:const layout-path "public/default.html")
 

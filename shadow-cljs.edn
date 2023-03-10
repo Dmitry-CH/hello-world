@@ -2,6 +2,6 @@
  
  :source-paths ["src/cljs"]
  :builds {:app {:target :esm
-                :compiler-options {:output-feature-set :es6}
-                :modules {:main {:exports {init helloworld.core/init}}}
-                :output-dir "compiled/"}}}
+                :output-dir "compiled/js/" 
+                :modules {:main {:exports {init helloworld.core/init!}}}
+                :compiler-options {:output-feature-set :es6}}}}
