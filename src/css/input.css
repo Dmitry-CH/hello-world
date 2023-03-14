@@ -5,3 +5,7 @@
 ::selection {
     @apply bg-white text-black;
 }
+
+body {
+    @apply flex flex-col h-screen bg-black text-white text-base
+}
