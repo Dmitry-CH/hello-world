@@ -8,9 +8,9 @@
  :router/core
  {:base-path ""
   :routes #ig/refset :router/routes}
- 
- [:api.components/home :router/routes]
- {:path "/"}
- 
- [:api.components/health :router/routes]
- {:path "/health"}}
+
+ [:api/health :router/routes]
+ {:path "/health"}
+
+ [:pages/home :router/routes]
+ {:path "/"}}

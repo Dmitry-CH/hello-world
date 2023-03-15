@@ -7,14 +7,16 @@
             [helloworld.server]
             ;; Routes
             [helloworld.router]
-            [helloworld.api.components.home.routes]
-            [helloworld.api.components.health.routes])
+            [helloworld.api.health.routes]
+            [helloworld.pages.home.routes])
   (:gen-class))
+
 
 ;; Log uncaught exceptions in threads
 #_(Thread/setDefaultUncaughtExceptionHandler nil)
 
 (defonce system (atom nil))
+
 
 (defn stop-app []
   (some-> @system
@@ -22,6 +24,7 @@
 
   ;; Принудительно завершить `thread pools agent system`
   (shutdown-agents))
+
 
 (defn start-app []
   (some->> (config/system-config)
@@ -31,6 +34,7 @@
 
   ;; TODO: Добавить описание
   (.addShutdownHook (Runtime/getRuntime) (Thread. stop-app)))
+
 
 (defn -main [& _]
   (start-app))

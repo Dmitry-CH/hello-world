@@ -1,23 +1,8 @@
 (ns helloworld.handler
   (:require [integrant.core :as ig]
             [reitit.ring :as ring]
-            [ring.util.http-response :as http-response]))
+            [helloworld.middleware.exception :refer [exception-middleware]]))
 
-(defn exception-handler [^Exception e]
-  (let [mess (.getMessage e)]
-    (http-response/internal-server-error
-     (or mess "Server Error"))))
-
-(defn wrap-exception [handler]
-  (fn [request]
-    (try
-      (handler request)
-      (catch Throwable e
-        (exception-handler e)))))
-
-(def exception-middleware
-  {:name ::exception
-   :wrap wrap-exception})
 
 (defmethod ig/init-key :handler/ring
   [_ {:keys [router]}]

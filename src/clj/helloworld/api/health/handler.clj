@@ -1,6 +1,7 @@
-(ns helloworld.api.components.health.handler
+(ns helloworld.api.health.handler
   (:require [clojure.tools.logging :as log]
             [ring.util.http-response :as http-response]))
+
 
 (defn health [_]
   (log/debug "[Handler] API health")

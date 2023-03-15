@@ -1,11 +1,13 @@
-(ns helloworld.api.views.layout
+(ns helloworld.pages.layout
   (:require [clojure.java.io :as io]
             [clojure.string :as str]))
+
 
 (def ^:const layout-path "public/default.html")
 
 (def layout
   (slurp (io/resource layout-path)))
+
 
 (defn extend-layout [body]
   (str/replace layout #"\{\{BODY\}\}" body))
