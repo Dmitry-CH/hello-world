@@ -9,6 +9,7 @@
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [org.clojure/tools.logging "1.2.4"]
                  [ch.qos.logback/logback-classic "1.4.5"]
+                 [com.taoensso/tempura "1.5.3"]
                  [com.taoensso/timbre "6.0.4"]
                  [integrant "0.8.0"]
                  [io.github.clj-kondo/config-rum-rum "1.0.0"]
