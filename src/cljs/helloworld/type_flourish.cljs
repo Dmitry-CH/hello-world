@@ -1,4 +1,4 @@
-(ns helloworld.type-shuffle
+(ns helloworld.type-flourish
   (:require ["splitting/dist/splitting.min" :as splitting]))
 
 ;; https://splitting.js.org/
@@ -48,13 +48,11 @@
 ;; -------------------------
 ;; ...
 
-(defn shuffle [el]
+(defn flourish! [el]
   (let [results (first (splitting (clj->js {:target el :by "chars"})))
         el (.-el results)
         chars (.-chars results)
         words (.-words results)]
-
-    #_(.log js/console results)
 
     {:el el
      :chars (map-indexed create-char chars)
@@ -63,30 +61,30 @@
      :totalWords (count words)}))
 
 
-(defmulti shuffle-effect (fn [fx _] fx))
+(defmulti flourish-fx (fn [fx _] fx))
 
 ;; ...
 
-(defn- effect-3
+(defn- fx-3
   ([char max]
-   (effect-3 char max 1))
+   (fx-3 char max 1))
   ([char max iteration]
    (if-not (= iteration max)
      (do
        (set-char! char (get-random-char))
        (js/setTimeout (fn []
-                        (effect-3 char max (inc iteration)))
+                        (fx-3 char max (inc iteration)))
                       200))
      (set-char! char (:original char)))))
 
-(defmethod shuffle-effect :fx3
+(defmethod flourish-fx :fx3
   [_ {:keys [chars]}]
 
-  (let [MAX_ITERATIONS 10] 
+  (let [MAX_ITERATIONS 10]
     (clear-chars! chars)
 
     (doseq [char chars]
       ;; ...
       (js/setTimeout (fn []
-                       (effect-3 char MAX_ITERATIONS))
+                       (fx-3 char MAX_ITERATIONS))
                      (rand-int 3000)))))

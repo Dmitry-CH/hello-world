@@ -1,9 +1,11 @@
 (ns helloworld.core
-  (:require [helloworld.type-shuffle :refer [shuffle shuffle-effect]]))
+  (:require [helloworld.type-flourish :refer [flourish! flourish-fx]]))
 
 (defn- dom-loaded [_]
   (when-some [el (.querySelector js/document ".js-splitting")]
-    (shuffle-effect :fx3 (shuffle el))))
+    (.log js/console "~~~DOMContentLoaded")
+
+    (flourish-fx :fx3 (flourish! el))))
 
 ;; -------------------------
 ;; Initialize app

@@ -7,7 +7,6 @@
   "scripts": {
     "build": "run-s *:build",
     "watch": "run-p -lr *:watch",
-    "watch:win": "(start npm run cljs:watch) | (start npm run js:watch) | (start npm run css:watch)",
     "cljs:build": "shadow-cljs release app",
     "cljs:watch": "shadow-cljs watch app",
     "js:build": "cross-env NODE_ENV=production webpack",
@@ -20,9 +19,11 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
+    "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
     "npm-run-all": "^4.1.5",
     "shadow-cljs": "^2.21.0",
+    "style-loader": "^3.3.2",
     "tailwindcss": "^3.2.7",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"

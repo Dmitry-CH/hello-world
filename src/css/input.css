@@ -7,5 +7,5 @@
 }
 
 body {
-    @apply flex flex-col h-screen bg-black text-white text-base
+    @apply flex flex-col h-screen bg-black font-mono text-white text-base
 }

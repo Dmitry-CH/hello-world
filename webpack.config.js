@@ -13,6 +13,14 @@ module.exports = {
         path: path.resolve(__dirname, './resources/public/assets'),
         publicPath: 'assets',
     },
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+        ],
+    },
     devtool: false,
     plugins: [
         new HtmlWebpackPlugin({
