@@ -18,12 +18,15 @@
                 :totalWords 0})
 
 
-(def letters-and-symbols
+(def letters-and-symbols-en
   ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "!", "@", "#", "$", "&", "*", "(", ")", "-", "_", "+", "=", "/", "[", "]", "{", "}", ";", ":", "<", ">", ",", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
 
+(def letters-and-symbols-ru
+  ["а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я", "!", "@", "#", "$", "&", "*", "(", ")", "-", "_", "+", "=", "/", "[", "]", "{", "}", ";", ":", "<", ">", ",", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
+
 (defn- get-random-char []
-  (nth letters-and-symbols
-       (rand-int (count letters-and-symbols))))
+  (nth letters-and-symbols-en
+       (rand-int (count letters-and-symbols-en))))
 
 
 (defn- set-char! [char val]
@@ -63,7 +66,6 @@
 
 (defmulti flourish-fx (fn [fx _] fx))
 
-;; ...
 
 (defn- fx-3
   ([char max]
@@ -84,7 +86,6 @@
     (clear-chars! chars)
 
     (doseq [char chars]
-      ;; ...
       (js/setTimeout (fn []
                        (fx-3 char MAX_ITERATIONS))
                      (rand-int 3000)))))

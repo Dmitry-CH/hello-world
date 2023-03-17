@@ -1,11 +1,31 @@
 (ns helloworld.core
-  (:require [helloworld.type-flourish :refer [flourish! flourish-fx]]))
+  (:require [helloworld.type-flourish :refer [flourish! flourish-fx]]
+            [helloworld.utils :refer [parse-cookie]]))
+
+
+(defn time-counter [el]
+  (let [start (.now js/Date)
+        elapsed (atom 0)]
+
+    (js/setInterval (fn []
+                      (swap! elapsed #(- (.now js/Date) start))
+                      (set! (.-innerHTML el)
+                            (.toFixed (/ @elapsed 1000) 3)))
+                    100)))
+
 
 (defn- dom-loaded [_]
-  (when-some [el (.querySelector js/document ".js-splitting")]
-    (.log js/console "~~~DOMContentLoaded")
+  (let [cookie (.-cookie js/document)
+        lang (:lang (parse-cookie cookie) "en1")]
+    
+    ;; Init time counter
+    (when-some [el (.querySelector js/document "#js-time")]
+      (time-counter el))
+    
+    ;; Init text effect
+    (when-some [el (.querySelector js/document "#js-splitting")]
+      (flourish-fx :fx3 (flourish! el)))))
 
-    (flourish-fx :fx3 (flourish! el))))
 
 ;; -------------------------
 ;; Initialize app

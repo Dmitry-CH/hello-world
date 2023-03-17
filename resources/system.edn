@@ -10,7 +10,10 @@
   :routes #ig/refset :router/routes}
 
  [:api/health :router/routes]
- {:path "/health"}
+ {:path "/api/health"}
+
+ [:api/lang :router/routes]
+ {:path "/api/lang"}
 
  [:pages/home :router/routes]
  {:path "/"}}

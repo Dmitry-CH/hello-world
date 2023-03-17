@@ -7,5 +7,9 @@
 }
 
 body {
-    @apply flex flex-col h-screen bg-black font-mono text-white text-base
+    @apply bg-black font-mono text-base text-white
+}
+
+.container {
+    @apply mx-auto max-w-screen-2xl pl-8 lg:pl-16 pr-4
 }

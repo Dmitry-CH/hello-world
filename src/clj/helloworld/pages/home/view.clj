@@ -1,33 +1,36 @@
 (ns helloworld.pages.home.view
-  (:require [rum.core :as rum] 
+  (:require [rum.core :as rum]
             [helloworld.pages.layout :refer [extend-layout]]
             [helloworld.pages.ui.button.core :refer [button-square]]))
 
 
-(rum/defc about []
-  [:dl.js-splitting.grid.gap-4.uppercase.text-2xl
-   {:class "grid-cols-[15ch_1fr] max-w-[50%]"}
+(rum/defc about [map]
+  [:dl#js-splitting.grid.gap-0.lg:gap-4.text-base.lg:text-2xl.uppercase
+   {:class "grid-cols-[1fr] lg:grid-cols-[15ch_1fr] lg:max-w-[50%]"}
 
-   [:dt.font-bold "Name:"]
-   [:dd "Dmitry Chekanov"]
-
-   [:dt.font-bold "Profession:"]
-   [:dd "Creative Web Developer"]
-
-   [:dt.font-bold "Bio:"]
-   [:dd "7 years experience - HTML, CSS, JavaScript. Passion for creativity in the digital space. Constantly seeking new challenges, growth opportunities. Skilled in modern web development frameworks."]])
+   (for [[_ val] map]
+     [:<>
+      [:dt.font-bold (:title val)]
+      [:dd.mb-3.lg:mb-0.last:mb-0 (:value val)]])])
 
 
-(rum/defc page [{:keys [lang]}]
+(rum/defc page [{:keys [lang title content]}]
   [:<>
-   [:header.absolute.flex.items-center.w-full.px-6.py-3.pl-16
-    [:h2.text-sm.text-lime-500 "Hi! Guest"]
-    (button-square lang)]
+   [:header.absolute.top-0.w-full.py-3
+    [:div.container.flex.items-center.justify-between
+     [:h2.text-sm.text-lime-500 title]
+     (button-square lang {:hx-get "/api/lang"})]]
 
-   [:main.flex.grow.items-center.pl-16
-    (about)]])
+   [:main.overflow-hidden
+    [:div.container.flex.items-center.h-screen
+     (about content)]]
+
+   [:footer.absolute.bottom-0.w-full.py-3
+    [:div.container.flex.items-center.justify-end
+     [:time#js-time.text-sm.text-lime-500
+      0]]]])
 
 
-(defn render [params]
-  (-> (rum/render-static-markup (page params))
+(defn render [opts]
+  (-> (rum/render-static-markup (page opts))
       extend-layout))

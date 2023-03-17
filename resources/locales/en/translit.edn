@@ -1,2 +1,13 @@
 {:missing ":en text not found"
- :page {:lang "En"}}
+
+ :page {:lang "En"
+        :title "Hi! Guest"}
+
+ :author {:name {:title "Name:"
+                 :value "Dmitry Chekanov"}
+          
+          :profession {:title "Profession:"
+                       :value "Creative web developer"}
+          
+          :bio {:title "Bio:"
+                :value "7 years experience - html, css, javascript. Passion for creativity in the digital space. Constantly seeking new challenges, growth opportunities. Skilled in modern web development frameworks."}}}
