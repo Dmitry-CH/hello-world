@@ -17,7 +17,8 @@
                  [metosin/ring-http-response "0.9.3"]
                  [ring/ring-core "1.9.6"]
                  [ring/ring-jetty-adapter "1.9.6"]
-                 [rum "0.12.10" :exclusions [cljsjs/react cljsjs/react-dom]]]
+                 [rum "0.12.10" :exclusions [cljsjs/react cljsjs/react-dom]]
+                 [selmer "1.12.57"]]
   :plugins [[lein-pprint "1.3.2"]]
 
   ;;; Profiles

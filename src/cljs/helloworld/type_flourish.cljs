@@ -18,6 +18,9 @@
                 :totalWords 0})
 
 
+(def ^:dynamic *lang* "en")
+
+
 (def letters-and-symbols-en
   ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "!", "@", "#", "$", "&", "*", "(", ")", "-", "_", "+", "=", "/", "[", "]", "{", "}", ";", ":", "<", ">", ",", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
 
@@ -25,8 +28,13 @@
   ["а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я", "!", "@", "#", "$", "&", "*", "(", ")", "-", "_", "+", "=", "/", "[", "]", "{", "}", ";", ":", "<", ">", ",", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
 
 (defn- get-random-char []
-  (nth letters-and-symbols-en
-       (rand-int (count letters-and-symbols-en))))
+  (let [xs (case *lang*
+             "en" letters-and-symbols-en
+             "ru" letters-and-symbols-ru
+             :else letters-and-symbols-en)
+        len (count xs)]
+
+    (nth xs (rand-int len))))
 
 
 (defn- set-char! [char val]
@@ -52,7 +60,7 @@
 ;; ...
 
 (defn flourish! [el]
-  (let [results (first (splitting (clj->js {:target el :by "chars"})))
+  (let [results (first (splitting #js{:target el :by "chars"}))
         el (.-el results)
         chars (.-chars results)
         words (.-words results)]

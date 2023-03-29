@@ -1,5 +1,5 @@
 (ns helloworld.core
-  (:require [helloworld.type-flourish :refer [flourish! flourish-fx]]
+  (:require [helloworld.type-flourish :refer [flourish! flourish-fx *lang*]]
             [helloworld.utils :refer [parse-cookie]]))
 
 
@@ -16,19 +16,20 @@
 
 (defn- dom-loaded [_]
   (let [cookie (.-cookie js/document)
-        lang (:lang (parse-cookie cookie) "en1")]
+        lang (:lang (parse-cookie cookie) "en")]
     
-    ;; Init time counter
+    ;; Run time counter
     (when-some [el (.querySelector js/document "#js-time")]
       (time-counter el))
     
-    ;; Init text effect
+    ;; Run text effect
     (when-some [el (.querySelector js/document "#js-splitting")]
+      (set! *lang* lang)
       (flourish-fx :fx3 (flourish! el)))))
 
 
 ;; -------------------------
-;; Initialize app
+;; Init app
 
 (defn ^:export init! []
   (.addEventListener js/document "DOMContentLoaded" dom-loaded))

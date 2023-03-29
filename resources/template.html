@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="ru">
+<html lang="{{lang|default:en}}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,14 +9,12 @@
     <title>HelloWorld</title>
 
     <link rel="stylesheet" href="assets/css/main.css">
-    
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script> -->
     <script defer src="https://unpkg.com/htmx.org@1.8.6" integrity="sha384-Bj8qm/6B+71E6FQSySofJOUjA/gq330vEqjFx9LakWybUySyI1IQHwPtbTU7bNwx" crossorigin="anonymous"></script>
 
-    <!-- {{HEAD}} -->
+    {% safe %}{{head}}{% endsafe %}
 </head>
 
 <body>
-    {{BODY}}
+    {% safe %}{{body}}{% endsafe %}
 </body>
 </html>

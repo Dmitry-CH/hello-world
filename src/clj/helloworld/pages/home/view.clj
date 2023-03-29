@@ -1,6 +1,6 @@
 (ns helloworld.pages.home.view
   (:require [rum.core :as rum]
-            [helloworld.pages.layout :refer [extend-layout]]
+            [helloworld.pages.layout :as layout]
             [helloworld.pages.ui.button.core :refer [button-square]]))
 
 
@@ -14,7 +14,7 @@
       [:dd.mb-3.lg:mb-0.last:mb-0 (:value val)]])])
 
 
-(rum/defc page [{:keys [lang title content]}]
+(rum/defc body [{:keys [lang title content]}]
   [:<>
    [:header.absolute.top-0.w-full.py-3
     [:div.container.flex.items-center.justify-between
@@ -31,6 +31,7 @@
       0]]]])
 
 
-(defn render [opts]
-  (-> (rum/render-static-markup (page opts))
-      extend-layout))
+(defn render [data]
+  (let [body (rum/render-static-markup (body data))]
+    (layout/render {:lang "en"
+                    :body body})))

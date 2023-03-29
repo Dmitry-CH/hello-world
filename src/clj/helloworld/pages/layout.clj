@@ -1,13 +1,24 @@
 (ns helloworld.pages.layout
   (:require [clojure.java.io :as io]
-            [clojure.string :as str]))
+            [selmer.parser :as parser]))
 
 
-(def ^:const layout-path "public/default.html")
-
-(def layout
-  (slurp (io/resource layout-path)))
+(parser/set-resource-path! (io/resource "public/"))
 
 
-(defn extend-layout [body]
-  (str/replace layout #"\{\{BODY\}\}" body))
+(defn render
+  "Базовый шаблон страницы.
+   
+   Usage:
+   ```
+   (render {:body \"<div>...</div>\"})
+   ```
+   
+   Keys:
+   | key     | description |
+   |---------|-------------|
+   | `:lang` | Язык страницы
+   | `:head` | Вставка в `<head>`
+   | `:body` | Вставка в `<body>`"
+  [params]
+  (parser/render-file "default.html" params))
