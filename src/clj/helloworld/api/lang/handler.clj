@@ -11,7 +11,7 @@
   (log/debug "[Handler] API lang")
   
   (let [cookies (:cookies request)
-        lang (get-in cookies ["lang" :value] "en")]
+        lang (get-in cookies ["lang" :value] "ru")]
     (-> (http-response/ok)
         (assoc-in [:cookies "lang"] {:value (get lang-switch lang)
                                      :path "/"

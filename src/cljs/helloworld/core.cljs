@@ -16,16 +16,19 @@
 
 (defn- dom-loaded [_]
   (let [cookie (.-cookie js/document)
-        lang (:lang (parse-cookie cookie) "en")]
-    
+        lang (:lang (parse-cookie cookie) "ru")]
+
+    (when-some [el (.querySelector js/document ".loading")]
+      (.removeAttribute el "class"))
+
     ;; Run time counter
     (when-some [el (.querySelector js/document "#js-time")]
       (time-counter el))
-    
+
     ;; Run text effect
     (when-some [el (.querySelector js/document "#js-splitting")]
       (set! *lang* lang)
-      (flourish-fx :fx3 (flourish! el)))))
+      (flourish-fx :fx1 (flourish! el)))))
 
 
 ;; -------------------------

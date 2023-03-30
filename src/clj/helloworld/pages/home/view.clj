@@ -14,8 +14,12 @@
       [:dd.mb-3.lg:mb-0.last:mb-0 (:value val)]])])
 
 
-(rum/defc body [{:keys [lang title content]}]
-  [:<>
+(rum/defc body [{:keys [lang loading title content]}]
+  [:div.loading
+   [:div.absolute.top-0.w-full.py-3.hidden
+    [:div.container.flex.items-center.justify-between
+     [:span.text-sm.leading-8.text-lime-500 loading]]]
+
    [:header.absolute.top-0.w-full.py-3
     [:div.container.flex.items-center.justify-between
      [:h2.text-sm.text-lime-500 title]
@@ -31,7 +35,17 @@
       0]]]])
 
 
-(defn render [data]
-  (let [body (rum/render-static-markup (body data))]
-    (layout/render {:lang "en"
+(defn render [{:keys [lang tr]}]
+  (let [data {:lang  (tr [:page/lang])
+              :loading (tr [:page/loading])
+              :title (tr [:page/title])
+              :content {:name {:title (tr [:author.name/title])
+                               :value (tr [:author.name/value])}
+                        :profession {:title (tr [:author.profession/title])
+                                     :value (tr [:author.profession/value])}
+                        :bio {:title (tr [:author.bio/title])
+                              :value (tr [:author.bio/value])}}}
+        body (rum/render-static-markup (body data))]
+
+    (layout/render {:lang lang
                     :body body})))

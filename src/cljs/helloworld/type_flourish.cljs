@@ -1,24 +1,8 @@
 (ns helloworld.type-flourish
   (:require ["splitting/dist/splitting.min" :as splitting]))
 
-;; https://splitting.js.org/
 
-#_(def Char {:el nil
-             :index 0
-             :original ""})
-
-#_(def Word {:el nil
-             :index 0
-             :original ""})
-
-#_(def Shuffle {:el nil
-                :chars []
-                :words []
-                :totalChars 0
-                :totalWords 0})
-
-
-(def ^:dynamic *lang* "en")
+(def ^:dynamic *lang* "ru")
 
 
 (def letters-and-symbols-en
@@ -30,8 +14,7 @@
 (defn- get-random-char []
   (let [xs (case *lang*
              "en" letters-and-symbols-en
-             "ru" letters-and-symbols-ru
-             :else letters-and-symbols-en)
+             letters-and-symbols-ru)
         len (count xs)]
 
     (nth xs (rand-int len))))
@@ -53,14 +36,14 @@
 (defn- create-word [idx itm]
   {:el itm
    :index idx
-   :original (.getAttribute itm "data-char")})
+   :original (.getAttribute itm "data-word")})
 
 
 ;; -------------------------
-;; ...
+;; Public API
 
 (defn flourish! [el]
-  (let [results (first (splitting #js{:target el :by "chars"}))
+  (let [^js results (aget (splitting #js{:target el :by "chars"}) 0)
         el (.-el results)
         chars (.-chars results)
         words (.-words results)]
@@ -75,19 +58,21 @@
 (defmulti flourish-fx (fn [fx _] fx))
 
 
-(defn- fx-3
+;; ...
+
+(defn- fx-1
   ([char max]
-   (fx-3 char max 1))
+   (fx-1 char max 1))
   ([char max iteration]
    (if-not (= iteration max)
      (do
        (set-char! char (get-random-char))
        (js/setTimeout (fn []
-                        (fx-3 char max (inc iteration)))
+                        (fx-1 char max (inc iteration)))
                       200))
      (set-char! char (:original char)))))
 
-(defmethod flourish-fx :fx3
+(defmethod flourish-fx :fx1
   [_ {:keys [chars]}]
 
   (let [MAX_ITERATIONS 10]
@@ -95,5 +80,33 @@
 
     (doseq [char chars]
       (js/setTimeout (fn []
-                       (fx-3 char MAX_ITERATIONS))
+                       (fx-1 char MAX_ITERATIONS))
                      (rand-int 3000)))))
+
+
+;; ...
+
+(defn- fx-2 []
+  nil)
+
+(defmethod flourish-fx :fx2
+  [_ {:keys [chars]}]
+  
+  nil)
+
+
+;; https://splitting.js.org/
+
+#_(def Char {:el nil
+             :index 0
+             :original ""})
+
+#_(def Word {:el nil
+             :index 0
+             :original ""})
+
+#_(def Shuffle {:el nil
+                :chars []
+                :words []
+                :totalChars 0
+                :totalWords 0})

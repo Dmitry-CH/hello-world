@@ -1,6 +1,7 @@
 {:missing ":ru текст не найден"
  
  :page {:lang "Ru"
+        :loading "Загрузка..."
         :title "Привет! Гость"}
 
  :author {:name {:title "Имя:"

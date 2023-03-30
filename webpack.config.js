@@ -21,13 +21,18 @@ module.exports = {
             },
         ],
     },
-    devtool: false,
     plugins: [
         new HtmlWebpackPlugin({
             filename: path.resolve(__dirname, 'resources/public/default.html'),
             template: 'resources/template.html',
         }),
     ],
+    resolve: {
+        alias: {
+            compiled: path.resolve(__dirname, './compiled'),
+        },
+    },
+    devtool: false,
     watchOptions: {
         aggregateTimeout: 1000,
         poll: 3000,

@@ -11,10 +11,11 @@
     "cljs:watch": "shadow-cljs watch app",
     "js:build": "cross-env NODE_ENV=production webpack",
     "js:watch": "cross-env NODE_ENV=development webpack --progress --watch",
-    "css:build": "npx tailwindcss -o ./resources/public/assets/css/main.css --minify",
+    "css:build": "npx tailwindcss -i ./src/css/input.css -o ./resources/public/assets/css/main.css --minify",
     "css:watch": "npx tailwindcss -i ./src/css/input.css -o ./resources/public/assets/css/main.css --watch"
   },
   "dependencies": {
+    "htmx.org": "^1.8.6",
     "splitting": "^1.0.6"
   },
   "devDependencies": {

@@ -1,6 +1,7 @@
 {:missing ":en text not found"
 
  :page {:lang "En"
+        :loading "Loading..."
         :title "Hi! Guest"}
 
  :author {:name {:title "Name:"

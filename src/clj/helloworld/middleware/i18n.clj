@@ -20,7 +20,7 @@
 (defn wrap-i18n-cookies [handler]
   (fn [request]
     (let [cookies (:cookies request)
-          lang (get-in cookies ["lang" :value] "en")]
+          lang (get-in cookies ["lang" :value] "ru")]
       (handler (assoc request :tempura/locales [lang])))))
 
 (def i18n-cookies-middleware
