@@ -5,6 +5,11 @@
             [integrant.repl :refer [go halt reset reset-all]]
             [helloworld.config :refer [system-config]]))
 
+
+(require 'helloworld.core)
+
+
+;; ...
 (defn dev-prep! []
   (integrant.repl/set-prep! (fn []
                               (-> (system-config)

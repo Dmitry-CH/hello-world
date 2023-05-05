@@ -8,7 +8,8 @@
         elapsed (atom 0)]
 
     (js/setInterval (fn []
-                      (swap! elapsed #(- (.now js/Date) start))
+                      (swap! elapsed (fn [_]
+                                       (- (.now js/Date) start)))
                       (set! (.-innerHTML el)
                             (.toFixed (/ @elapsed 1000) 3)))
                     100)))

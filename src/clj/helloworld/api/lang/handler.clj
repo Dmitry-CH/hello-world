@@ -13,7 +13,7 @@
   (let [cookies (:cookies request)
         lang (get-in cookies ["lang" :value] "ru")]
     (-> (http-response/ok)
-        (assoc-in [:cookies "lang"] {:value (get lang-switch lang)
+        (assoc-in [:cookies "lang"] {:value (lang-switch lang)
                                      :path "/"
                                      #_#_:http-only true})
         (assoc-in [:headers "HX-Refresh"] "true"))))

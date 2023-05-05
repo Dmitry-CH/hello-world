@@ -1,4 +1,4 @@
-(ns helloworld.pages.layout
+(ns helloworld.views.layout
   (:require [clojure.java.io :as io]
             [selmer.parser :as parser]))
 

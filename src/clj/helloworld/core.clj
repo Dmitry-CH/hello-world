@@ -9,7 +9,8 @@
             [helloworld.router]
             [helloworld.api.health.routes]
             [helloworld.api.lang.routes]
-            [helloworld.pages.home.routes])
+            ;; Pages
+            [helloworld.api.home.routes])
   (:gen-class))
 
 

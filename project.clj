@@ -46,6 +46,9 @@
   :source-paths ["src/clj"]
   :resource-paths ["resources"]
   :test-paths ["test/clj"]
-  :target-path "target/%s/")
+  :target-path "target/%s/"
+  
+  ;;; Repl
+  :repl-options {:init-ns user})
 
 ;; https://github.com/technomancy/leiningen/blob/stable/sample.project.clj
