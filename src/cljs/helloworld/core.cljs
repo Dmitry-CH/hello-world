@@ -3,9 +3,15 @@
             [helloworld.utils :refer [parse-cookie]]))
 
 
+(def default-lang "ru")
+
+(def start (.now js/Date))
+(def elapsed (atom 0))
+
+
 (defn time-counter [el]
-  (let [start (.now js/Date)
-        elapsed (atom 0)]
+  (let [#_#_start (.now js/Date)
+        #_#_elapsed (atom 0)]
 
     (js/setInterval (fn []
                       (swap! elapsed (fn [_]
@@ -15,25 +21,37 @@
                     100)))
 
 
-(defn- dom-loaded [_]
-  (let [cookie (.-cookie js/document)
-        lang (:lang (parse-cookie cookie) "ru")]
+(defn- current-lang []
+  (let [cookies (.-cookie js/document)
+        lang (:lang (parse-cookie cookies) default-lang)]
+    lang))
 
-    (when-some [el (.querySelector js/document ".loading")]
-      (.removeAttribute el "class"))
 
-    ;; Run time counter
-    (when-some [el (.querySelector js/document "#js-time")]
-      (time-counter el))
+(defn- run [lang]
+  ;; Hide loading screen
+  (when-some [el (.querySelector js/document ".loading")]
+    (.removeAttribute el "class"))
 
-    ;; Run text effect
-    (when-some [el (.querySelector js/document "#js-splitting")]
-      (set! *lang* lang)
-      (flourish-fx :fx1 (flourish! el)))))
+  ;; Run time counter
+  (when-some [el (.querySelector js/document "#js-time")]
+    (time-counter el))
+
+  ;; Run text effect
+  (when-some [el (.querySelector js/document "#js-splitting")]
+    (set! *lang* lang)
+    (flourish-fx :fx1 (flourish! el))))
 
 
 ;; -------------------------
 ;; Init app
 
 (defn ^:export init! []
-  (.addEventListener js/document "DOMContentLoaded" dom-loaded))
+  (.addEventListener js/document
+                     "DOMContentLoaded"
+                     (fn [_]
+                       (run (current-lang))))
+
+  (.addEventListener (.-body js/document)
+                     "htmx:load"
+                     (fn [_]
+                       (run (current-lang)))))

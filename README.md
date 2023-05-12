@@ -2,6 +2,12 @@
 
 Starter pet-project.
 
+## Lein
+
+* собрать (prod)
+
+        lein with-profile uberjar uberjar
+
 ## Docker
 
 * собрать image

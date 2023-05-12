@@ -7,11 +7,11 @@
 }
 
 body {
-    @apply bg-black font-mono text-base text-white
+    @apply bg-black font-mono text-base text-white;
 }
 
 .container {
-    @apply mx-auto max-w-screen-2xl pl-8 lg:pl-16 pr-4
+    @apply mx-auto max-w-screen-2xl pl-8 lg:pl-16 pr-4;
 }
 
 .loading > :first-child {
@@ -20,4 +20,16 @@ body {
 
 .loading > :not(:first-child) {
     @apply hidden;
+}
+
+#page {
+    @apply opacity-100 transition-[opacity] duration-700 ease-out;
+}
+
+#page.htmx-swapping {
+    @apply opacity-0 transition-[opacity] duration-300 ease-out;
+}
+
+#page.htmx-settling {
+    @apply opacity-0;
 }

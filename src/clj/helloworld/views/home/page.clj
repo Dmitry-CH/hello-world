@@ -6,7 +6,11 @@
 
 
 (rum/defc page [{:keys [lang loading title content]}]
-  [:div.loading
+  [:div#page.loading
+   {:hx-get "/"
+    :hx-swap "outerHTML swap:0.3s settle:0.3s"
+    :hx-trigger "langSwitch"}
+
    [:div.absolute.top-0.w-full.py-3.hidden
     [:div.container.flex.items-center.justify-between
      [:span.text-sm.leading-8.text-lime-500 loading]]]
@@ -14,7 +18,8 @@
    [:header.absolute.top-0.w-full.py-3
     [:div.container.flex.items-center.justify-between
      [:h2.text-sm.text-lime-500 title]
-     (button-square lang {:hx-get "/api/lang"})]]
+     (button-square lang {:hx-get "/api/lang"
+                          :hx-swap "none"})]]
 
    [:main.overflow-hidden
     [:div.container.flex.items-center.h-screen

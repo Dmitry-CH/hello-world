@@ -7,6 +7,7 @@
   
   ;;; Dependencies, Plugins, and Repositories
   :dependencies [[org.clojure/clojure "1.11.1"]
+                 [org.clojure/data.json "2.4.0"]
                  [org.clojure/tools.logging "1.2.4"]
                  [ch.qos.logback/logback-classic "1.4.5"]
                  [com.taoensso/tempura "1.5.3"]
